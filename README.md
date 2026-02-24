@@ -1,13 +1,183 @@
 # Causal Inference for Extreme Events
 
-## Description
+Droughts are hydroclimatic anomalies driven by precipitation deficits and increased evapotranspiration, posing an escalating threat under global warming conditions. However, assessing drought risk remains challenging due to the complex interactions between biophysical conditions and human systems, as well as limitations in impact reporting. Furthermore, the impact of drought varies significantly across different sectors because different types of drought affect socio-environmental systems in different ways. Therefore, an approach based on drought impacts is essential for understanding drought risk. 
 
-Apply causal inference methods (e.g., Causal Forests) to estimate the drivers
-of extreme weather events. While traditional ML focuses on prediction, it often confuses
-correlation with causation. In this challenge, participants will move beyond association to
-estimate the heterogeneous causal effect of climate and environmental factors on the
-severity of extremes.
+Although traditional machine learning (ML) has achieved remarkable success in drought prediction, these models are often based on spurious correlations rather than physical mechanisms. Predictive accuracy does not translate into causal understanding. In order to develop actionable policies for climate adaptation, we must transition from prediction based on associations to causal inference.
 
-## Recommended reading material
-- [Econml Documentation](https://www.pywhy.org/EconML/) + [econml.dml.CausalForestDML](https://www.pywhy.org/EconML/_autosummary/econml.dml.CausalForestDML.html#cfdml1)
-- [Reading Material](https://drive.google.com/drive/folders/18Y-tuNztgH0uY1eFnf34btzWRkrvkzm0)
+This challenge focuses on causal inference methods to identify the causes of extreme weather events. Participants will move beyond association in order to estimate the heterogeneous causal effect of climate and environmental factors on the severity of such events.
+
+Participants are invited to explore the dataset and develop causal inference models to improve our understanding of the impact of drought on the agricultural sector.
+
+### 📚 Recommended reading material
+
+- Reading material ([link](https://drive.google.com/drive/folders/18Y-tuNztgH0uY1eFnf34btzWRkrvkzm0))
+- Econml [Documentation](https://www.pywhy.org/EconML/)
+  -   [econml.dml.LinearDML](https://www.pywhy.org/EconML/_autosummary/econml.dml.LinearDML.html#econml-dml-lineardml)
+  -   [econml.dml.CausalForestDML](https://www.pywhy.org/EconML/_autosummary/econml.dml.CausalForestDML.html#cfdml1)
+
+### 🎯 Challenge Objectives
+
+By using causal inference methods, this challenge aims to uncover the underlying causal drivers of extreme events such as drought impacts on the agricultural sector.
+
+Participants are encouraged to investigate one or more of the following research directions:
+
+- How does **soil moisture deficits** influence the likelihood of agricultural drought impacts, and how do these effects vary across **climate types** and/or  **hydrological basins**?”
+- How does **meteorological droughts (SPI)** influence the likelihood of agricultural drought impacts, and how do these effects vary across **climate types** and/or  **hydrological basins**?”
+- How does **[ENSO](https://www.ncei.noaa.gov/access/monitoring/enso/)** influence the likelihood of agricultural drought impacts, and how do these effects vary across **climate types** and/or  **hydrological basins**?”
+- *How does a "**factor**" influence the likelihood of agricultural drought impacts, and how do these effects vary across "**regions**"?”*
+
+### 🗂️ Data Sources
+
+We will work with a multimodal and harmonized dataset. It includes data from several sources.
+
+- [EDID](https://drought.emergency.copernicus.eu/tumbo/edid/about): European Drought Impact Database (EDID) – A comprehensive dataset tracking drought impacts in Europe 
+- [ERA5](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=overview): ERA5 monthly averaged data on single levels from 1940 to present
+- [ERA5-Drought](https://cds.climate.copernicus.eu/datasets/derived-drought-historical-monthly?tab=overview): ERA5–Drought is a global reconstruction of drought indices from 1940 to present.
+- [GLEAM v4.2b](https://www.gleam.eu/) GLEAM provides data of the different components of land evaporation.
+- [EDO](https://drought.emergency.copernicus.eu/tumbo/edo/download/): Drought Observatory of the Copernicus Emergency Management Service
+- [MODIS](https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod13q1-061): The Moderate Resolution Imaging Spectroradiometer (MODIS), measures visible and infrared radiation and obtaining data that are being used to derive products ranging from vegetation, land surface cover, and ocean chlorophyll fluorescence to cloud and aerosol properties, fire occurrence, snow cover on the land, and sea ice cover on the oceans.
+- [WORLDPOP](https://www.worldpop.org/): WorldPop develops peer-reviewed research and methods for the construction of open and high-resolution geospatial data on population distributions, demographic and dynamics.
+- [COP30-DEM](https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM): The Copernicus DEM is a Digital Surface Model (DSM) that represents the surface of the Earth including buildings, infrastructure and vegetation.
+- [Global-HAND](https://www.researchgate.net/publication/301559649_Global_30m_Height_Above_the_Nearest_Drainage): The Height Above the Nearest Drainage (HAND), a digital elevation model normalized using the nearest drainage is used for hydrological and more general purpose applications, such as hazard mapping, landform classification, and remote sensing.
+- [Geomorpho90m](https://portal.opentopography.org/dataspace/dataset?opentopoID=OTDS.012020.4326.1): A global dataset comprising of 26 geomorphometric features derived from the MERIT-DEM.
+- [Microsoft Roads](https://github.com/microsoft/RoadDetections/tree/main?tab=readme-ov-file): Roads around the world.
+- [CCI-LC](https://www.esa-landcover-cci.org/?q=node/164): fully automated global land cover mapping at 300m resolution.
+- [European Soil Database Derived data](https://esdac.jrc.ec.europa.eu/content/european-soil-database-derived-data): A number of layers for soil properties have been created based on data from the European Soil Database in combination with data from the Harmonized World Soil Database (HWSD) and Soil-Terrain Database (SOTER).
+- [HydroSHEDS](https://www.hydrosheds.org/): suite of global digital data layers in support of hydro-ecological research and applications worldwide.
+- [GAEZ (FAO)](https://data.apps.fao.org/gaez/?lang=en): Agro-Ecological Zones (AEZ), relies on well-established land evaluation principles to assess natural resources for finding suitable agricultural land utilization options
+- [NOAA/PDL](https://psl.noaa.gov/data/timeseries/month/): Monthly Climate/Ocean Indices (Time-Series) at the Physical Sciences Laboratory (PSL)
+
+### 🛢 Description of variables
+
+**Target / Outcome**:
+
+| **Name**                                                                              | **Variable name** | **Unit**                              | *Source* |
+| ------------------------------------------------------------------------------------- | ----------------- | ------------------------------------- | -------- |
+| Drought impact in the agriculture sector (severe and extreme impacts, at least during 60 days) | DI_agri_extreme_M7 | Binary | EDID |
+
+**Climate, environmental and socio-economic factors**
+
+**Potential Treatments**:
+
+| **Name**                                               | **Variable name**             | **Unit**      | *Source*                                                                                                         |
+| ------------------------------------------------------ | ----------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Standard Precipitation Evapotranspitation Index (1,3,6,12,24,38,48M) | SPEI | (-4,4) | ERA5-Drought|
+| Standard Precipitation Index (1,3,6,12,24,38,48M) | SPI | (-4,4) | ERA5-Drought] |
+| Combine Drought Index | CDI | categories (1,2,3) | EDO |
+| Soil Moisture Anomaly | SMA | categories (1,2,3) | EDO |
+
+**Potential counfounding and moderators**:
+
+| **Name**                                               | **Variable name**             | **Unit**      | *Source*                                                                                                         |
+| ------------------------------------------------------ | ----------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Evaporation (anomaly) | e_ds | m of water equivalent | ERA5|
+| Potential evaporation (anomaly) | pev_ds | m | ERA5 |
+| Runoff (anomaly) | ro_ds | m | ERA5 |
+| Surface runoff  (anomaly) | sro_ds | m | ERA5 | 
+| Surface latent heat flux (anomaly) | slhf_ds | J m**-2 | ERA5|
+| Surface net solar radiation (anomaly) | ssr_ds | J m**-2 | ERA5|
+| Surface solar radiation downwards (anomaly) | ssrd_ds | J m**-2 | ERA5 |
+| Surface net thermal radiation (anomaly) | str_ds | J m**-2 | ERA5 |
+| Surface thermal radiation downwards (anomaly) | strd_ds | J m**-2 | ERA5 |
+| Total precipitation (anomaly) | tp_ds | m | ERA5 | 
+| Neutral wind at 10 m u-component (anomaly) | u10_ds | m s**-1 | ERA5 | 
+| Neutral wind at 10 m v-component (anomaly) | v10_ds | m s**-1 | ERA5 | 
+| 2 metre dewpoint temperature (anomaly) | d2m_ds | K| ERA5|
+| Mean sea level pressure (anomaly) | msl_ds | Ps | ERA5 |
+| Sea surface temperature (anomaly) | sst_ds | K | ERA5 |
+| Surface pressure (anomaly) | sp_ds | Pa | ERA5 |
+| Skin temperature (anomaly) | skt_ds | K | ERA5 | 
+| Total column water vapour (anomaly) | tcwv_ds | kg m**-2 | ERA5 | 
+| Total column water (anomaly) | tcw_ds | kg m**-2 | ERA5 | 
+| Air density over the oceans (anomaly) | rhoao_ds | kg m**-3 | ERA5 |
+| Actual Evaporation (anomaly) | E_gleam_ds | mm d^-1 | GLEAM v4.2b |
+| Potential Evaporation (anomaly) | Ep_gleam_ds | mm d^-1 | GLEAM v4.2b |
+| Aerodynamic component of Potential Evaporation (anomaly) | Ep_aero_gleam_ds | mm d^-1 | GLEAM v4.2b |
+| Radiative component of Potential Evaporation (anomaly) | Ep_rad_gleam_ds | mm d^-1 | GLEAM v4.2b |
+| Interception loss (anomaly) | Ei_gleam_ds | mm d^-1 | GLEAM v4.2b |
+| Bare-soil Evaporation (anomaly) | Eb_gleam_ds | mm d^-1 | GLEAM v4.2b |
+| Snow sublimation (anomaly) | Es_gleam_ds | mm d^-1 | GLEAM v4.2b |
+| Transpiration (anomaly) | Et_gleam_ds | mm d^-1 | GLEAM v4.2b |
+| Open-water evaporation (anomaly) | Ew_gleam_ds | mm d^-1 | GLEAM v4.2b |
+| Surface condensation (anomaly) | Ec_gleam_ds | mm d^-1 | GLEAM v4.2b |
+| Evaporative stress factor (anomaly) | S_gleam_ds | - | GLEAM v4.2b |
+| Root-zone soil moisture (anomaly) | SMrz_gleam_ds | m^3 d^-3 | GLEAM v4.2b |
+| Surface Soil Moisture (anomaly) | SMs_gleam_ds | m^3 d^-3 | GLEAM v4.2b |
+| Sensible heat flux (anomaly) | H_gleam_ds | W d^-2 | GLEAM v4.2b |
+| Daytime Land Surface Temperature (anomaly) | lst_day_ds | K | MODIS |
+| Nighttime Land Surface Temperature (anomaly) | lst_night_ds | K | MODIS |
+| Normalized Difference Vegetation Index (anomaly) | ndvi_ds | - | MODIS |
+| Normalized Difference Water Index (anomaly) | ndwi_ds | - | MODIS |
+| Mean Population | pop | - | Worldpop |
+| Mean elevation | dem | m | COP30 |
+| Mean height above nearest drainage | hand | m | Global-HAND|
+| Mean Flow accumulation - number of upstream grid cells | acc | - | HydroSHEDS |
+| Mean Stream Power Index | spi | - |[Geomorpho90m|
+| Mean Compound Topographic Index | cti | - | [eomorpho90m|
+| Road density | road | km km ^-2 | Roads|
+| Land cover percentage | lc | (%) | CCI-LC |
+| Irrigated crops | agri_irri | (%) | CCI-LC |
+| Rainfed crops | agri_rain | (%) | CCI-LC] |
+| Mixed crops with vegetation | agri_mix | (%) | CCI-LC|
+| Topsoil Clay content | soil_clay | (%) | European Soil Database Derived data |
+| Topsoil Organic Carbon content | soil_oc | (%) | European Soil Database Derived data |
+| Depth available to roots | soil_roots | cm | European Soil Database Derived data |
+| Topsoil Sand content | soil_sand | (%) | European Soil Database Derived data |
+| Subsoil Total available water content from PTF | soil_tawc | mm | European Soil Database Derived data |
+| Mean total precipitation for the basin level 8 (anomaly) | tp_basin_mean_ds | m | ERA5 & HydroSHEDS |
+
+### Teleconnections
+
+| **Name**                                       | **Variable name**     | **Unit**     | *Source*        |
+| ---------------------------------------------- | --------------------- | ------------ | --------------- |
+| Arctic Oscillation                             | ao_long               | mb           | NOAA/CPC        |
+| Bivariate EnSo Timeseries                      | censo                 | std          | NOAA/PSL        |
+| Eastern Atlantic                               | ea                    | mb           | NOAA/CPC        |
+| North Atlantic Oscillation                     | nao_long              | mb           | NOAA/NGDC       |
+| Niño 3.4 (HadISST)                             | nino34_long_anom      | Cº           | NOAA/PSL        |
+| NOAA Global Average Land Temperature Anomalies | noaa_globaltmp_comb   | Cº           | NOAA/NCEI       |
+| Pacific Decadal Oscillation PSL                | pdo_timeseries_sstens | Cº           | U of Washington |
+| Pacific North American Index                   | pna                   | mb           | NOAA/CPC        |
+| Southern Oscillation Index                     | soi_long              | standardized | UEA CRU         |
+| West Pacific Index                             | wp                    | mb           | NOAA/CPC        |
+
+### Climate zones and basins (regions)
+
+| **Name**                            | **Variable name**   |   *Source*     |
+| ----------------------------------- | ------------------- | ------------ | 
+| Hydrological basins (level 2) | basin | HydroSHEDS|
+| Hydrological basins (level 3) | basin | HydroSHEDS |
+| Agro-ecological zones (Koeppen-Geiger climate classification)  | KG2 |  GAEZ (FAO) |
+| Agro-ecological zones (Thermal regimes) | thz | GAEZ (FAO) |
+
+---
+
+## 🚀 Getting Started
+
+1️⃣ Clone the Repository
+
+```
+cd C:\repos
+git clone https://github.com/martsape/09_causal_extremes.git
+cd 09_causal_extremes
+```
+
+2️⃣  Create environment or install Dependencies (from cmd with .yml file)
+
+```
+conda create -n causal_op pip -y 
+conda activate causal_op
+```
+
+```
+conda env create -f path\environment.yml
+conda activate causal_op
+```
+3️⃣ Explore the data
+4️⃣ Train/test nuanced models
+5️⃣ Train causal models
+6️⃣ Validation / sensitivity analysis
+7️⃣ Interpret results
+8️⃣ Visualization
+
+

@@ -158,26 +158,33 @@ We will work with a multimodal and harmonized dataset. It includes data from sev
 
 ```
 cd C:\repos
-git clone https://github.com/martsape/09_causal_extremes.git
-cd 09_causal_extremes
+git clone https://github.com/martsape/ch09-causal-inference-extremes.git
+cd ch09-causal-inference-extremes
 ```
 
-2️⃣  Create environment or install Dependencies (from cmd with .yml file)
+2️⃣  Open terminal - Install dependencies (with .yml file)
 
 ```
-conda create -n causal_op pip -y 
-conda activate causal_op
+conda env create -f environment.yml
+conda activate causal_ml
 ```
 
-```
-conda env create -f path\environment.yml
-conda activate causal_op
-```
 3️⃣ Explore the data
-4️⃣ Train/test nuanced models
-5️⃣ Train causal models
-6️⃣ Validation / sensitivity analysis
+
+Understand the spatiotemporal distribution of drought impacts and potential biases.
+
+Play with the data, make some maps, and conduct an Exploratory Data Analysis (EDA) to understand the structure of the dataset.
+
+Propose a Directed Acyclic Graph (DAG) based on the covariates, your treatment and outcome.
+
+4️⃣ Data filtering for causal inference (hints: notebooks\02_data_filtering_propensity_score.ipynb)
+
+4️⃣ Train/test nuanced models (hints: notebooks\03_trained_nuisance_models.ipynb)
+
+5️⃣ Train causal models (hints: notebooks\04_causal_models.ipynb)
+
+6️⃣ Validation / sensitivity analysis (hints: notebooks\04_causal_models.ipynb)
+
 7️⃣ Interpret results
+
 8️⃣ Visualization
-
-

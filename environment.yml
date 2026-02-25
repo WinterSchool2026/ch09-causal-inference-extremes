@@ -1,0 +1,21 @@
+name: causal_ml
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - pandas
+  - xarray
+  - geopandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - dask
+  - netcdf4
+  - h5netcdf
+  - pip:
+      - pycaret
+      - econml
+      - numba

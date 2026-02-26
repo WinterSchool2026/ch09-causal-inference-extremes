@@ -26,6 +26,10 @@ Participants are encouraged to investigate one or more of the following research
 - How does **[ENSO](https://www.ncei.noaa.gov/access/monitoring/enso/)** influence the likelihood of agricultural drought impacts, and how do these effects vary across **climate types** and/or  **hydrological basins**?”
 - *How does a "**factor**" influence the likelihood of "**agricultural drought impacts**", and how do these effects vary across "**regions**"?”*
 
+### 🗂️ Data
+
+[data_description.md](\data_description.md)
+
 ---
 
 ### 🚀 Getting Started
@@ -71,6 +75,7 @@ TASKS:
 - Look for the best hyperparameters for each model.
 - Use the filtered samples from step 4️⃣
 - Split the sample data in train, validation, and test using the time dimension.
+- Use cross validation (CV)
 - Add the regions or heterogenous variable ($X$) in the nuisance models by creating a hot-one enconded or dummy variable.
 - Report the accuracy of the models.
 

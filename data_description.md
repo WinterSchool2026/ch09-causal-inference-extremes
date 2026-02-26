@@ -1,6 +1,6 @@
 ### 🗂️ Data Sources
 
-You will work with a multimodal and harmonized dataset. It includes data from several sources.
+You will work with a multimodal and harmonized dataset. It includes data from several sources. Data has been deseasoned (remove seasonal patterns, representing anomalies) and standardized (z-scores).
 
 - [EDID](https://drought.emergency.copernicus.eu/tumbo/edid/about): European Drought Impact Database (EDID) – A comprehensive dataset tracking drought impacts in Europe 
 - [ERA5](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=overview): ERA5 monthly averaged data on single levels from 1940 to present

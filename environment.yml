@@ -5,9 +5,14 @@ channels:
 dependencies:
   - python=3.10
   - pip
+  - ipykernel
   - numpy
   - pandas
   - xarray
+  - zarr
+  - fsspec
+  - aiohttp
+  - requests
   - geopandas
   - matplotlib
   - seaborn

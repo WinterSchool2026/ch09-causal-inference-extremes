@@ -24,137 +24,13 @@ Participants are encouraged to investigate one or more of the following research
 - How does **soil moisture deficits** influence the likelihood of agricultural drought impacts, and how do these effects vary across **climate types** and/or  **hydrological basins**?”
 - How does **meteorological droughts (SPI)** influence the likelihood of agricultural drought impacts, and how do these effects vary across **climate types** and/or  **hydrological basins**?”
 - How does **[ENSO](https://www.ncei.noaa.gov/access/monitoring/enso/)** influence the likelihood of agricultural drought impacts, and how do these effects vary across **climate types** and/or  **hydrological basins**?”
-- *How does a "**factor**" influence the likelihood of agricultural drought impacts, and how do these effects vary across "**regions**"?”*
-
-### 🗂️ Data Sources
-
-We will work with a multimodal and harmonized dataset. It includes data from several sources.
-
-- [EDID](https://drought.emergency.copernicus.eu/tumbo/edid/about): European Drought Impact Database (EDID) – A comprehensive dataset tracking drought impacts in Europe 
-- [ERA5](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=overview): ERA5 monthly averaged data on single levels from 1940 to present
-- [ERA5-Drought](https://cds.climate.copernicus.eu/datasets/derived-drought-historical-monthly?tab=overview): ERA5–Drought is a global reconstruction of drought indices from 1940 to present.
-- [GLEAM v4.2b](https://www.gleam.eu/) GLEAM provides data of the different components of land evaporation.
-- [EDO](https://drought.emergency.copernicus.eu/tumbo/edo/download/): Drought Observatory of the Copernicus Emergency Management Service
-- [MODIS](https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod13q1-061): The Moderate Resolution Imaging Spectroradiometer (MODIS), measures visible and infrared radiation and obtaining data that are being used to derive products ranging from vegetation, land surface cover, and ocean chlorophyll fluorescence to cloud and aerosol properties, fire occurrence, snow cover on the land, and sea ice cover on the oceans.
-- [WORLDPOP](https://www.worldpop.org/): WorldPop develops peer-reviewed research and methods for the construction of open and high-resolution geospatial data on population distributions, demographic and dynamics.
-- [COP30-DEM](https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM): The Copernicus DEM is a Digital Surface Model (DSM) that represents the surface of the Earth including buildings, infrastructure and vegetation.
-- [Global-HAND](https://www.researchgate.net/publication/301559649_Global_30m_Height_Above_the_Nearest_Drainage): The Height Above the Nearest Drainage (HAND), a digital elevation model normalized using the nearest drainage is used for hydrological and more general purpose applications, such as hazard mapping, landform classification, and remote sensing.
-- [Geomorpho90m](https://portal.opentopography.org/dataspace/dataset?opentopoID=OTDS.012020.4326.1): A global dataset comprising of 26 geomorphometric features derived from the MERIT-DEM.
-- [Microsoft Roads](https://github.com/microsoft/RoadDetections/tree/main?tab=readme-ov-file): Roads around the world.
-- [CCI-LC](https://www.esa-landcover-cci.org/?q=node/164): fully automated global land cover mapping at 300m resolution.
-- [European Soil Database Derived data](https://esdac.jrc.ec.europa.eu/content/european-soil-database-derived-data): A number of layers for soil properties have been created based on data from the European Soil Database in combination with data from the Harmonized World Soil Database (HWSD) and Soil-Terrain Database (SOTER).
-- [HydroSHEDS](https://www.hydrosheds.org/): suite of global digital data layers in support of hydro-ecological research and applications worldwide.
-- [GAEZ (FAO)](https://data.apps.fao.org/gaez/?lang=en): Agro-Ecological Zones (AEZ), relies on well-established land evaluation principles to assess natural resources for finding suitable agricultural land utilization options
-- [NOAA/PDL](https://psl.noaa.gov/data/timeseries/month/): Monthly Climate/Ocean Indices (Time-Series) at the Physical Sciences Laboratory (PSL)
-
-### 🛢 Description of variables
-
-**Target / Outcome**:
-
-| **Name**                                                                              | **Variable name** | **Unit**                              | *Source* |
-| ------------------------------------------------------------------------------------- | ----------------- | ------------------------------------- | -------- |
-| Drought impact in the agriculture sector (severe and extreme impacts, at least during 60 days) | DI_agri_extreme_M7 | Binary | EDID |
-
-**Climate, environmental and socio-economic factors**
-
-**Potential Treatments**:
-
-| **Name**                                               | **Variable name**             | **Unit**      | *Source*                                                                                                         |
-| ------------------------------------------------------ | ----------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Standard Precipitation Evapotranspitation Index (1,3,6,12,24,38,48M) | SPEI | (-4,4) | ERA5-Drought|
-| Standard Precipitation Index (1,3,6,12,24,38,48M) | SPI | (-4,4) | ERA5-Drought] |
-| Combine Drought Index | CDI | categories (1,2,3) | EDO |
-| Soil Moisture Anomaly | SMA | categories (1,2,3) | EDO |
-
-**Potential counfounding and moderators**:
-
-| **Name**                                               | **Variable name**             | **Unit**      | *Source*                                                                                                         |
-| ------------------------------------------------------ | ----------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Evaporation (anomaly) | e_ds | m of water equivalent | ERA5|
-| Potential evaporation (anomaly) | pev_ds | m | ERA5 |
-| Runoff (anomaly) | ro_ds | m | ERA5 |
-| Surface runoff  (anomaly) | sro_ds | m | ERA5 | 
-| Surface latent heat flux (anomaly) | slhf_ds | J m**-2 | ERA5|
-| Surface net solar radiation (anomaly) | ssr_ds | J m**-2 | ERA5|
-| Surface solar radiation downwards (anomaly) | ssrd_ds | J m**-2 | ERA5 |
-| Surface net thermal radiation (anomaly) | str_ds | J m**-2 | ERA5 |
-| Surface thermal radiation downwards (anomaly) | strd_ds | J m**-2 | ERA5 |
-| Total precipitation (anomaly) | tp_ds | m | ERA5 | 
-| Neutral wind at 10 m u-component (anomaly) | u10_ds | m s**-1 | ERA5 | 
-| Neutral wind at 10 m v-component (anomaly) | v10_ds | m s**-1 | ERA5 | 
-| 2 metre dewpoint temperature (anomaly) | d2m_ds | K| ERA5|
-| Mean sea level pressure (anomaly) | msl_ds | Ps | ERA5 |
-| Sea surface temperature (anomaly) | sst_ds | K | ERA5 |
-| Surface pressure (anomaly) | sp_ds | Pa | ERA5 |
-| Skin temperature (anomaly) | skt_ds | K | ERA5 | 
-| Total column water vapour (anomaly) | tcwv_ds | kg m**-2 | ERA5 | 
-| Total column water (anomaly) | tcw_ds | kg m**-2 | ERA5 | 
-| Air density over the oceans (anomaly) | rhoao_ds | kg m**-3 | ERA5 |
-| Actual Evaporation (anomaly) | E_gleam_ds | mm d^-1 | GLEAM v4.2b |
-| Potential Evaporation (anomaly) | Ep_gleam_ds | mm d^-1 | GLEAM v4.2b |
-| Aerodynamic component of Potential Evaporation (anomaly) | Ep_aero_gleam_ds | mm d^-1 | GLEAM v4.2b |
-| Radiative component of Potential Evaporation (anomaly) | Ep_rad_gleam_ds | mm d^-1 | GLEAM v4.2b |
-| Interception loss (anomaly) | Ei_gleam_ds | mm d^-1 | GLEAM v4.2b |
-| Bare-soil Evaporation (anomaly) | Eb_gleam_ds | mm d^-1 | GLEAM v4.2b |
-| Snow sublimation (anomaly) | Es_gleam_ds | mm d^-1 | GLEAM v4.2b |
-| Transpiration (anomaly) | Et_gleam_ds | mm d^-1 | GLEAM v4.2b |
-| Open-water evaporation (anomaly) | Ew_gleam_ds | mm d^-1 | GLEAM v4.2b |
-| Surface condensation (anomaly) | Ec_gleam_ds | mm d^-1 | GLEAM v4.2b |
-| Evaporative stress factor (anomaly) | S_gleam_ds | - | GLEAM v4.2b |
-| Root-zone soil moisture (anomaly) | SMrz_gleam_ds | m^3 d^-3 | GLEAM v4.2b |
-| Surface Soil Moisture (anomaly) | SMs_gleam_ds | m^3 d^-3 | GLEAM v4.2b |
-| Sensible heat flux (anomaly) | H_gleam_ds | W d^-2 | GLEAM v4.2b |
-| Daytime Land Surface Temperature (anomaly) | lst_day_ds | K | MODIS |
-| Nighttime Land Surface Temperature (anomaly) | lst_night_ds | K | MODIS |
-| Normalized Difference Vegetation Index (anomaly) | ndvi_ds | - | MODIS |
-| Normalized Difference Water Index (anomaly) | ndwi_ds | - | MODIS |
-| Mean Population | pop | - | Worldpop |
-| Mean elevation | dem | m | COP30 |
-| Mean height above nearest drainage | hand | m | Global-HAND|
-| Mean Flow accumulation - number of upstream grid cells | acc | - | HydroSHEDS |
-| Mean Stream Power Index | spi | - |[Geomorpho90m|
-| Mean Compound Topographic Index | cti | - | [eomorpho90m|
-| Road density | road | km km ^-2 | Roads|
-| Land cover percentage | lc | (%) | CCI-LC |
-| Irrigated crops | agri_irri | (%) | CCI-LC |
-| Rainfed crops | agri_rain | (%) | CCI-LC] |
-| Mixed crops with vegetation | agri_mix | (%) | CCI-LC|
-| Topsoil Clay content | soil_clay | (%) | European Soil Database Derived data |
-| Topsoil Organic Carbon content | soil_oc | (%) | European Soil Database Derived data |
-| Depth available to roots | soil_roots | cm | European Soil Database Derived data |
-| Topsoil Sand content | soil_sand | (%) | European Soil Database Derived data |
-| Subsoil Total available water content from PTF | soil_tawc | mm | European Soil Database Derived data |
-| Mean total precipitation for the basin level 8 (anomaly) | tp_basin_mean_ds | m | ERA5 & HydroSHEDS |
-
-### Teleconnections
-
-| **Name**                                       | **Variable name**     | **Unit**     | *Source*        |
-| ---------------------------------------------- | --------------------- | ------------ | --------------- |
-| Arctic Oscillation                             | ao_long               | mb           | NOAA/CPC        |
-| Bivariate EnSo Timeseries                      | censo                 | std          | NOAA/PSL        |
-| Eastern Atlantic                               | ea                    | mb           | NOAA/CPC        |
-| North Atlantic Oscillation                     | nao_long              | mb           | NOAA/NGDC       |
-| Niño 3.4 (HadISST)                             | nino34_long_anom      | Cº           | NOAA/PSL        |
-| NOAA Global Average Land Temperature Anomalies | noaa_globaltmp_comb   | Cº           | NOAA/NCEI       |
-| Pacific Decadal Oscillation PSL                | pdo_timeseries_sstens | Cº           | U of Washington |
-| Pacific North American Index                   | pna                   | mb           | NOAA/CPC        |
-| Southern Oscillation Index                     | soi_long              | standardized | UEA CRU         |
-| West Pacific Index                             | wp                    | mb           | NOAA/CPC        |
-
-### Climate zones and basins (regions)
-
-| **Name**                            | **Variable name**   |   *Source*     |
-| ----------------------------------- | ------------------- | ------------ | 
-| Hydrological basins (level 2) | basin | HydroSHEDS|
-| Hydrological basins (level 3) | basin | HydroSHEDS |
-| Agro-ecological zones (Koeppen-Geiger climate classification)  | KG2 |  GAEZ (FAO) |
-| Agro-ecological zones (Thermal regimes) | thz | GAEZ (FAO) |
+- *How does a "**factor**" influence the likelihood of "**agricultural drought impacts**", and how do these effects vary across "**regions**"?”*
 
 ---
 
-## 🚀 Getting Started
+### 🚀 Getting Started
 
-1️⃣ Clone the Repository
+1️⃣ Clone the Repository or open in Google Colab
 
 ```
 cd C:\repos
@@ -162,7 +38,8 @@ git clone https://github.com/martsape/ch09-causal-inference-extremes.git
 cd ch09-causal-inference-extremes
 ```
 
-2️⃣  Open terminal - Install dependencies (with .yml file)
+
+2️⃣ If the repository has been cloned (this step is not necessary in Google Colab) -> Open terminal -> Install dependencies (with .yml file)
 
 ```
 conda env create -f environment.yml
@@ -171,20 +48,69 @@ conda activate causal_ml
 
 3️⃣ Explore the data
 
-Understand the spatiotemporal distribution of drought impacts and potential biases.
-
-Play with the data, make some maps, and conduct an Exploratory Data Analysis (EDA) to understand the structure of the dataset.
-
-Propose a Directed Acyclic Graph (DAG) based on the covariates, your treatment and outcome.
+TASKS:
+- Understand the spatiotemporal distribution of drought impacts, potential biases, and the environmental and climate covariates.
+- Play with the data, make some maps, conduct an Exploratory Data Analysis (EDA) to understand the structure of the dataset.
+- Propose a Directed Acyclic Graph (DAG) based on the covariates from the list, select a treatment, and the outcome. Look for the literature on the topic, and make a simple DAG to start on.
 
 4️⃣ Data filtering for causal inference (hints: notebooks\02_data_filtering_propensity_score.ipynb)
 
-4️⃣ Train/test nuanced models (hints: notebooks\03_trained_nuisance_models.ipynb)
+Propensity scores are used to filter out samples with extreme values to satisfy the overlap assumption, which ensures that the treatment and control groups are sufficiently comparable. Removing these units guarantees that every remaining observation had a non-trivial probability of receiving the treatment, thereby reducing bias and improving the stability of the causal effect estimates
 
-5️⃣ Train causal models (hints: notebooks\04_causal_models.ipynb)
+TASKS:
+- Train a binary logistic regression model with the Treatment as dependent variable, and the confounders from your DAG as independent variables.
+- Remove samples that have extreme Propensity scores (probability of the possitive class in the treatment).
+- Save the selected samples in a CSV file for later.
 
-6️⃣ Validation / sensitivity analysis (hints: notebooks\04_causal_models.ipynb)
+5️⃣ Train/test nuisance models (hints: notebooks\03_trained_nuisance_models.ipynb)
 
-7️⃣ Interpret results
+Nuisance models are the first-stage machine learning models used to separately predict the treatment assignment and the outcome variable based solely on the observed covariates. By estimating these arbitrary functions (nuisance parameters), the algorithms can isolate the residual variation in the treatment and outcome that is independent of confounding factors, allowing for an unbiased estimation of the causal effect in the final stage.
 
-8️⃣ Visualization
+TASKS:
+- Find the best two nuisance models, one to predict the Treatment and one for the Outcome. 
+- Look for the best hyperparameters for each model.
+- Use the filtered samples from step 4️⃣
+- Split the sample data in train, validation, and test using the time dimension.
+- Add the regions or heterogenous variable ($X$) in the nuisance models by creating a hot-one enconded or dummy variable.
+- Report the accuracy of the models.
+
+6️⃣ Train causal models (hints: notebooks\04_causal_models.ipynb)
+
+Double Machine Learning (DML) is a semiparametric causal inference technique that leverages machine learning to estimate average treatment effects in the presence of measured confounders by capturing complex, nonlinear relationships. It achieves this by using a procedure called cross-fitting to separately predict the treatment and the outcome from the covariates, and then isolates the causal effect by regressing the residuals from these two models to remove confounding bias. 
+LinearDML and CausalForestDML are part of the Double Machine Learning (DML) family in the EconML library. They are designed to estimate the Conditional Average Treatment Effect (CATE).*
+
+**LinearDML**: It assumes that the relationship between the features and the treatment effect is linear. It uses ML to remove the influence of confounders from both the treatment and the outcome, and then fits a simple linear regression on the residuals.
+
+**CausalForestDML**: It is non-parametric. It doesn't assume a linear relationship. It can find complex interactions. It uses a Forest of Trees (similar to a Random Forest) to estimate the treatment effect. It first cleans the data using ML. However, instead of a linear regression at the end, it builds many decision trees. Each tree tries to find groups of samples who respond differently to the treatment. It then averages these trees to get the final effect.
+
+TASKS:
+- Use the filtered samples from step 4️⃣, the same treatment and outcome, encode the regions
+- Make a map and a graph with the representation of T/O for your regions, in total, and across time and space.
+- Train a causal machine learning model to model the residual variation in the treatment and outcome. For that, you need your two best models from step 5️⃣
+- Compare a ``LinearDML`` model to ``CausalForestDML`` model
+- Report ATE and CATE
+- Visualize CATE for your regions
+
+7️⃣ Validation / Refutation tests (hints: notebooks\04_causal_models.ipynb)
+
+In causal machine learning frameworks validation strategies, often called refutation tests or robustness checks, are used to stress-test the underlying causal assumptions and ensure the estimated effects are reliable.
+
+The primary validation strategies used are:
+  
+**Placebo Treatment**: This test involves randomly permuting (shuffling) the treatment variable in the dataset. Because the newly assigned "placebo" treatment has no actual relationship with the outcome, a robust model should return an estimated causal effect that drops to zero.
+**Unobserved Common Cause / Sensitivity Analysis / Omitted Variable Test**: This simulates the presence of an unmeasured confounder (omitted variable) that affects both the treatment and the outcome. Sensitivity analyses quantify how much the final causal estimate would change or degrade under various strengths of this unobserved confounding, helping determine if the conclusions would hold up even if they missed a variable.
+
+**Random Common Cause**: A random noise variable is added to the dataset as an additional mock confounder. Because the variable is just noise, the estimated causal effect should remain unchanged and stable
+
+**Random Subset Removal:** A random subset of the observations is removed from the dataset, and the model is re-run. The estimated effect is expected to remain consistent, showing that the results are not being driven by a specific, small cluster of data points
+
+TASKS:
+  - Validate the Nuisance models from 5️⃣
+  - Apply different validation methods to the causal model.
+
+8️⃣ Interpret results
+
+TASKS:
+- Interpret your results. How much your treatment affected the impacts of agricultural droughts in different regions of Europe?
+- Look for literature that supports or contradicts your findings and discuss if your findings are plausible.
+- Prepare a presentation for Friday with your main findings, the challenges and limitations of the analysis.

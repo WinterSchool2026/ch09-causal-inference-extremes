@@ -28,7 +28,7 @@ Participants are encouraged to investigate one or more of the following research
 
 ### 🗂️ Data
 
-[data_description.md](\https://github.com/WinterSchool2026/ch09-causal-inference-extremes/blob/main/data_description.md)
+[data_description.md](https://github.com/WinterSchool2026/ch09-causal-inference-extremes/blob/main/data_description.md)
 
 ---
 

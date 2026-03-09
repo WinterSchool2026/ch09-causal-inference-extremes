@@ -30,6 +30,8 @@ Participants are encouraged to investigate one or more of the following research
 
 [data_description.md](https://github.com/WinterSchool2026/ch09-causal-inference-extremes/blob/main/data_description.md)
 
+[data folder](https://drive.google.com/drive/folders/1u6xXAmrIIDBlE29eTmzohicjiiUlM57u?usp=drive_link)
+
 ---
 
 ### 🚀 Getting Started

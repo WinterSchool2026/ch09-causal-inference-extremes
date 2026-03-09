@@ -1,6 +1,10 @@
 ### 🗂️ Data Sources
 
-You will work with a multimodal and harmonized dataset. It includes data from several sources. Data has been deseasoned (remove seasonal patterns, representing anomalies) and standardized (z-scores).
+You will work with a multimodal and harmonized dataset. It includes data from several sources. 
+
+Data has been deseasoned if necessary (remove seasonal patterns, representing anomalies) and standardized (z-scores) for those that are not indices.
+
+The datacube and CSV files contain data from the following sources:
 
 - [EDID](https://drought.emergency.copernicus.eu/tumbo/edid/about): European Drought Impact Database (EDID) – A comprehensive dataset tracking drought impacts in Europe 
 - [ERA5](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=overview): ERA5 monthly averaged data on single levels from 1940 to present
@@ -22,26 +26,29 @@ You will work with a multimodal and harmonized dataset. It includes data from se
 
 ### 🌍 Description of variables
 
-### Target / Outcome:
+### Potential Targets / Outcomes (for July (T1)):
 
 | **Name**                                                                              | **Variable name** | **Unit**                              | *Source* |
 | ------------------------------------------------------------------------------------- | ----------------- | ------------------------------------- | -------- |
 | Drought impact in the agriculture sector (severe and extreme impacts, at least during 60 days) | DI_agri_extreme_M7 | Binary | EDID |
-
+| Standard Precipitation Evapotranspitation Index (1,3,6,12,24,38,48M) | SPEI_07 | (-4,4) | ERA5-Drought|
+| Standard Precipitation Index (1,3,6,12,24,38,48M) | SPI_07 | (-4,4) | ERA5-Drought |
+| Combine Drought Index | CDI_07 | categories (1,2,3) | EDO |
+| Soil Moisture Anomaly | SMA_07 | categories (1,2,3) | EDO |
 
 ### Climate, environmental and socio-economic factors
 
-### - Potential Treatments:
+### - Potential Treatments (for June (T0)):
 
 | **Name**                                               | **Variable name**             | **Unit**      | *Source*                                                                                                         |
 | ------------------------------------------------------ | ----------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Standard Precipitation Evapotranspitation Index (1,3,6,12,24,38,48M) | SPEI | (-4,4) | ERA5-Drought|
-| Standard Precipitation Index (1,3,6,12,24,38,48M) | SPI | (-4,4) | ERA5-Drought |
-| Combine Drought Index | CDI | categories (1,2,3) | EDO |
-| Soil Moisture Anomaly | SMA | categories (1,2,3) | EDO |
+| Standard Precipitation Evapotranspitation Index (1,3,6,12,24,38,48M) | SPEI_06 | (-4,4) | ERA5-Drought|
+| Standard Precipitation Index (1,3,6,12,24,38,48M) | SPI_06 | (-4,4) | ERA5-Drought |
+| Combine Drought Index | CDI_06 | categories (1,2,3) | EDO |
+| Soil Moisture Anomaly | SMA_06 | categories (1,2,3) | EDO |
 
 
-### - Potential confounding and moderators:
+### - Potential confounding and moderators (for June (T0) or static):
 
 | **Name**                                               | **Variable name**             | **Unit**      | *Source*                                                                                                         |
 | ------------------------------------------------------ | ----------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -102,7 +109,7 @@ You will work with a multimodal and harmonized dataset. It includes data from se
 | Mean total precipitation for the basin level 8 (anomaly) | tp_basin_mean_ds | m | ERA5 & HydroSHEDS |
 
 
-### - Teleconnections
+### - Teleconnections (for June (T0))
 
 Teleconnections are large-scale, persistent atmospheric pressure and circulation patterns that link weather anomalies across widely separated regions, often thousands of kilometers apart. These recurring patterns, driven by ocean-atmosphere interactions, allow climate conditions in one area to influence another over weeks or months. Key examples include the El Niño-Southern Oscillation (ENSO), North Atlantic Oscillation (NAO), and Pacific-North American Pattern (PNA)
 

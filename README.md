@@ -24,7 +24,7 @@ Participants are encouraged to investigate one or more of the following research
 - How does **soil moisture deficits** influence the likelihood of **agricultural drought impacts**, and how do these effects vary across **climate types** and/or  **hydrological basins**?”
 - How does **meteorological droughts (SPI)** influence the likelihood of **agricultural drought impacts**, and how do these effects vary across **climate types** and/or  **hydrological basins**?”
 - How does **meteorological droughts (SPI)** influence the likelihood of **soil moisture deficits**, and how do these effects vary across **climate types** and/or  **hydrological basins**?”
-- *How does a "**factor**" influence the likelihood of "**agricultural drought impacts**", and how do these effects vary across "**regions**"?”*
+- *How does a "**factor**" influence the likelihood of "**extreme event**", and how do these effects vary across "**regions**"?”*
 
 ### 🗂️ Data
 
@@ -68,34 +68,37 @@ conda activate causal_ml
 Propensity scores are used to filter out samples with extreme values to satisfy the overlap assumption, which ensures that the treatment and control groups are sufficiently comparable. Removing these units guarantees that every remaining observation had a non-trivial probability of receiving the treatment, thereby reducing bias and improving the stability of the causal effect estimates
 
 *Suggested tasks*:
-- Train a binary logistic regression model with the Treatment as dependent variable, and the confounders from your DAG as independent variables.
+- Train a binary logistic regression model with the Treatment as dependent variable, and the confounders (W) and moderators (X) from your DAG as independent variables $f(X, W)$. This ensures that any confounding effect from your moderator is "cleaned out" before the causal effect is estimated.
 - Remove samples that have extreme Propensity scores (probability of the possitive class in the treatment).
 - Save the selected samples in a CSV file for later.
 
 5️⃣ Train/test nuisance models (hint: [03_trained_nuisance_models.ipynb](https://github.com/WinterSchool2026/ch09-causal-inference-extremes/blob/main/notebooks/03_trained_nuisance_models.ipynb))
 
-Nuisance models are the first-stage machine learning models used to separately predict the treatment assignment and the outcome variable based solely on the observed covariates. By estimating these arbitrary functions (nuisance parameters), the algorithms can isolate the residual variation in the treatment and outcome that is independent of confounding factors, allowing for an unbiased estimation of the causal effect in the final stage.
+Nuisance models are the first-stage ML models used to separately predict the Treatment assignment and the Outcome variable based solely on the observed covariates (confounders and moderators). By estimating these arbitrary functions (nuisance parameters), the algorithms can isolate the residual variation in the treatment and outcome that is independent of confounding factors, allowing for an unbiased estimation of the causal effect in the final stage.
 
 *Suggested tasks*:
-- Find the best two nuisance models, one to predict the Treatment and one for the Outcome. 
-- Look for the best hyperparameters for each model.
+- Find the best two nuisance models, one to predict the Treatment and one for the Outcome, using the confounders (W) and moderators (X) from your DAG as independent variables $f(X, W)$.
 - Use the filtered samples from step 4️⃣
+- Add the moderators or heterogenous variables ($X$) in the nuisance models by creating a hot-one enconded or dummy variable.
 - Split the sample data in train, validation, and test using the time dimension.
 - Use cross validation (CV)
-- Add the regions or heterogenous variable ($X$) in the nuisance models by creating a hot-one enconded or dummy variable.
+- Look for the best hyperparameters for each model.
 - Report the accuracy of the models.
 
 6️⃣ Train causal models (hint: [04_causal_models.ipynb](https://github.com/WinterSchool2026/ch09-causal-inference-extremes/blob/main/notebooks/04_causal_models.ipynb))
 
-Double Machine Learning (DML) is a semiparametric causal inference technique that leverages machine learning to estimate average treatment effects in the presence of measured confounders by capturing complex, nonlinear relationships. It achieves this by using a procedure called cross-fitting to separately predict the treatment and the outcome from the covariates, and then isolates the causal effect by regressing the residuals from these two models to remove confounding bias. 
-LinearDML and CausalForestDML are part of the Double Machine Learning (DML) family in the EconML library. They are designed to estimate the Conditional Average Treatment Effect (CATE).
+Double Machine Learning (DML) is a semiparametric causal inference technique that leverages ML to estimate average treatment effects in the presence of measured confounders by capturing complex, nonlinear relationships. It achieves this by using a procedure called cross-fitting to separately predict the treatment and the outcome from the covariates, and then isolates the causal effect by regressing the residuals from these two models to remove confounding bias. 
+
+LinearDML and CausalForestDML are part of the DML family in the EconML library. They are designed to estimate the Conditional Average Treatment Effect (CATE).
 
 **LinearDML**: It assumes that the relationship between the features and the treatment effect is linear. It uses ML to remove the influence of confounders from both the treatment and the outcome, and then fits a simple linear regression on the residuals.
 
-**CausalForestDML**: It is non-parametric. It doesn't assume a linear relationship. It can find complex interactions. It uses a Forest of Trees (similar to a Random Forest) to estimate the treatment effect. It first cleans the data using ML. However, instead of a linear regression at the end, it builds many decision trees. Each tree tries to find groups of samples who respond differently to the treatment. It then averages these trees to get the final effect.
+**CausalForestDML**: It is non-parametric. It doesn't assume a linear relationship. It can find complex interactions. It uses a Forest of Trees (similar to a Random Forest) to estimate the treatment effect. It first cleans the data using ML (through DML). However, instead of a linear regression at the end, it builds many decision trees. Each tree tries to find groups of samples who respond differently to the treatment. It then averages these trees to get the final effect.
+
+*Note: When we use ``.fit(Y, T, X=X, W=W)`` in CausalForestDML, EconML automatically handles the control variables for the nuisace model and the causal effect estimation. When we provide both $W$ and $X$ to the .fit() function, the nuisance models (model_y and model_t) are trained using the union of both sets of variables. While for the CATE stage only $X$ is used to determine how the treatment effect varies (the "splits" in the Causal Forest). Put variables you want to "interact" with the treatment in $X$, and put variables you only want to "control for" in $W$. EconML will make sure $X$ is used in both places.*
 
 *Suggested tasks*:
-- Use the filtered samples from step 4️⃣, the same treatment and outcome, encode the regions
+- Use the filtered samples from step 4️⃣, the same treatment and outcome.
 - Make a map and a graph with the representation of T/O for your regions, in total, and across time and space.
 - Train a causal machine learning model to model the residual variation in the treatment and outcome. For that, you need your two best models from step 5️⃣
 - Compare a ``LinearDML`` model to ``CausalForestDML`` model

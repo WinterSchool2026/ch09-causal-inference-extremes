@@ -26,13 +26,13 @@ The datacube and CSV files contain data from the following sources:
 
 ### 🌍 Description of variables
 
-### Potential Targets / Outcomes (for July (T1)):
+### - Potential Targets / Outcomes (for July (T1)):
 
 | **Name**                                                                              | **Variable name** | **Unit**                              | *Source* |
 | ------------------------------------------------------------------------------------- | ----------------- | ------------------------------------- | -------- |
 | Drought impact in the agriculture sector (severe and extreme impacts, at least during 60 days) | DI_agri_extreme_M7 | Binary | EDID |
-| Standard Precipitation Evapotranspitation Index (1,3,6,12,24,38,48M) | SPEI_07 | (-4,4) | ERA5-Drought|
-| Standard Precipitation Index (1,3,6,12,24,38,48M) | SPI_07 | (-4,4) | ERA5-Drought |
+| Standard Precipitation Evapotranspitation Index (1M) | SPEI_07 | (-4,4) | ERA5-Drought|
+| Standard Precipitation Index (1M) | SPI_07 | (-4,4) | ERA5-Drought |
 | Combine Drought Index | CDI_07 | categories (1,2,3) | EDO |
 | Soil Moisture Anomaly | SMA_07 | categories (1,2,3) | EDO |
 
@@ -48,7 +48,7 @@ The datacube and CSV files contain data from the following sources:
 | Soil Moisture Anomaly | SMA_06 | categories (1,2,3) | EDO |
 
 
-### - Potential confounding and moderators (for June (T0) or static):
+### - Potential confounding and control variables (for June (T0) or static):
 
 | **Name**                                               | **Variable name**             | **Unit**      | *Source*                                                                                                         |
 | ------------------------------------------------------ | ----------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -127,7 +127,7 @@ Teleconnections are large-scale, persistent atmospheric pressure and circulation
 | West Pacific Index                             | wp                    | mb           | NOAA/CPC        |
 
 
-### Climate zones and hydrological basins (regions)
+### Climate zones and hydrological basins (moderators)
 
 | **Name**                            | **Variable name**   |   *Source*     |
 | ----------------------------------- | ------------------- | ------------ | 

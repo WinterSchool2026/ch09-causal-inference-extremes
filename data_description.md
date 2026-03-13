@@ -1,6 +1,6 @@
 ### 🗂️ Data Sources
 
-You will work with a multimodal and harmonized dataset. It includes data from several sources. 
+You will work with a multimodal and harmonized dataset. It includes meteorological and land-surface data from several sources. 
 
 Data has been deseasoned if necessary (remove seasonal patterns, representing anomalies) and standardized (z-scores) for those that are not indices.
 
@@ -97,7 +97,7 @@ The datacube and CSV files contain data from the following sources:
 | Mean Stream Power Index | spi | - |Geomorpho90m|
 | Mean Compound Topographic Index | cti | - | Geomorpho90m|
 | Road density | road | km km ^-2 | Roads|
-| Land cover percentage | lc | (%) | CCI-LC |
+| Land cover percentage (1: Agriculture, 2: Forest, 3: Grassland, 4: Wetland, 5: Urban, 6: Shrubland, 7: Sparse vegetation, 8: Bare area, 9: Water,10: Snow and ice) | lc_x  | (%) | CCI-LC |
 | Irrigated crops | agri_irri | (%) | CCI-LC |
 | Rainfed crops | agri_rain | (%) | CCI-LC |
 | Mixed crops with vegetation | agri_mix | (%) | CCI-LC|
@@ -111,7 +111,7 @@ The datacube and CSV files contain data from the following sources:
 
 ### - Teleconnections (for June (T0))
 
-Teleconnections are large-scale, persistent atmospheric pressure and circulation patterns that link weather anomalies across widely separated regions, often thousands of kilometers apart. These recurring patterns, driven by ocean-atmosphere interactions, allow climate conditions in one area to influence another over weeks or months. Key examples include the El Niño-Southern Oscillation (ENSO), North Atlantic Oscillation (NAO), and Pacific-North American Pattern (PNA)
+Teleconnections are large-scale oscillations in the ocean-atmosphere system that influence regional weather through atmospheric bridges. These recurring patterns, driven by ocean-atmosphere interactions, allow climate conditions in one area to influence another over weeks or months. Key examples include the El Niño-Southern Oscillation (ENSO), North Atlantic Oscillation (NAO), and Pacific-North American Pattern (PNA).
 
 | **Name**                                       | **Variable name**     | **Unit**     | *Source*        |
 | ---------------------------------------------- | --------------------- | ------------ | --------------- |

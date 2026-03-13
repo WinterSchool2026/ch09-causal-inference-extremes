@@ -4,7 +4,7 @@ Droughts are hydroclimatic anomalies driven by precipitation deficits and increa
 
 Although traditional machine learning (ML) has achieved remarkable success in drought prediction, these models are often based on spurious correlations rather than physical mechanisms. Predictive accuracy does not translate into causal understanding. In order to develop actionable policies for climate adaptation, we must transition from prediction based on associations to causal inference.
 
-This challenge focuses on causal inference methods to identify the causes of extreme weather events. Participants will move beyond association in order to estimate the heterogeneous causal effect of climate and environmental factors on the severity of such events.
+This challenge focuses on causal inference methods to identify the causes of extreme weather events. Participants will move beyond association in order to estimate the heterogeneous causal effect of meteorological and land-surface factors on the severity of such events.
 
 Participants are invited to explore the dataset and develop causal inference models to improve our understanding of droughts.
 
@@ -59,7 +59,7 @@ conda activate causal_ml
 3️⃣ Explore the data (hint: [01_exploratory_data_analysis.ipynb](https://github.com/WinterSchool2026/ch09-causal-inference-extremes/blob/main/notebooks/01_exploratory_data_analysis.ipynb))
 
 *Suggested tasks*:
-- Understand the spatiotemporal distribution of drought impacts, potential biases, and the environmental and climate covariates.
+- Understand the spatiotemporal distribution of drought impacts, potential biases, and the meteorological and land-surface covariates.
 - Play with the data, make some maps, conduct an Exploratory Data Analysis (EDA) to understand the structure of the dataset.
 - Propose a Directed Acyclic Graph (DAG) based on the covariates from the list, select a treatment, and the outcome. Look for the literature on the topic, and make a simple DAG to start on.
 
@@ -104,6 +104,7 @@ LinearDML and CausalForestDML are part of the DML family in the EconML library. 
 - Compare a ``LinearDML`` model to ``CausalForestDML`` model
 - Report ATE and CATE
 - Visualize CATE for your regions
+- Apply interpretability techniques 
 
 7️⃣ Validation / Refutation tests (hint: [04_causal_models.ipynb](https://github.com/WinterSchool2026/ch09-causal-inference-extremes/blob/main/notebooks/04_causal_models.ipynb))
 

@@ -453,8 +453,8 @@ def plot_spatial_bias(df, treatment_col, outcome_col, time_col='time'):
     
     plt.show()
     
-def plot_causal_effects(df, effect_col='Estimated_Effect', lower_col='Lower_Bound', 
-                        upper_col='Upper_Bound', label_col='zone_name', 
+def plot_causal_effects(df, effect_col='CATE', lower_col='CI_Lower', 
+                        upper_col='CI_Upper', label_col='zone_name', 
                         title="Causal Impact"):
     """
     Generates a sorted forest plot for causal effects with significance coloring.
